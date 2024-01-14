@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('../recursos/font.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'MiFuente', sans-serif !important;
+    background-color: #f5f5f5;
+    color: #333;
+    padding-top: 50px;
+}
+
+h1 {
+    text-align: center;
+}
+
+#listaUsuarios,
+#mensajes {
+    list-style: none;
+    padding: 0;
+}
+
+#listaUsuarios li {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#mensajes div {
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    word-wrap: break-word;
+}
+
+#mensajeria {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#text {
+    flex: 1;
+    border-radius: 5px;
+    padding: 8px;
+    border: 1px solid #007bff;
+}
+
+@media (max-width: 576px) {
+
+    #listaUsuarios,
+    #mensajes {
+        padding-left: 0;
+    }
+
+    #mensajeria {
+        flex-direction: column;
+    }
+
+    #text {
+        flex: none;
+        width: 100%;
+    }
+}

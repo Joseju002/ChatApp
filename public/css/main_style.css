@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'MiFuente';
+    src: url('../recursos/font.otf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'MiFuente', sans-serif !important;
+}
+
+.max-width-600 {
+    max-width: 600px;
+}
+
+.alert {
+    padding: 10px;
+}
+  
