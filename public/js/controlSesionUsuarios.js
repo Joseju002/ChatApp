@@ -13,7 +13,7 @@ function comprobarCookie(nombre) {
     }
 }
 
-comprobarCookie("usuario");
+comprobarCookie("recordarUsuario");
 
 function iniciarSesion() {
     var usuario = document.getElementById('user').value;
