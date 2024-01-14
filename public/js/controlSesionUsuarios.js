@@ -1,3 +1,8 @@
+var fechaActual = new Date();
+var fechaExpiracion = new Date(fechaActual.getTime() + (30 * 60 * 1000)); // 30 minutos en milisegundos
+// Convierte la fecha de expiración a un formato de cadena en formato UTC
+var cadenaFechaExpiracion = fechaExpiracion.toUTCString();
+
 function comprobarCookie(nombre) {
     var cookieExistente = document.cookie.split(';').some(function(item) {
         return item.trim().startsWith(nombre + '=');
@@ -36,7 +41,7 @@ function iniciarSesion() {
             window.location.replace("/chat");
             sessionStorage.setItem('nombreUsuario', data.user);
         } else if (data.res == "login remember" && data.user && data.pass) {
-            document.cookie = "usuario=" + data.user;
+            document.cookie = "usuario=" + encodeURIComponent(data.user) + "; expires=" + cadenaFechaExpiracion + "; path=/";
             window.location.replace("/chat");
             sessionStorage.setItem('nombreUsuario', data.user);
         } else if (data.res == "login invalid") { //Si no es exitoso
