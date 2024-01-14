@@ -45,9 +45,17 @@ var auth = function (req, res, next) {
     if (req.session && req.session.user === "admin" && req.session.admin) {
         return next(); //Continua
     } else { //Si el usuario no tiene los permisos, te llevará a la página de inicio
-        var contenido = fs.readFileSync("./public/index.html");
-        res.setHeader("Content-type", "text/html");
-        res.send(contenido);
+        // Si no está autenticado pero hay una cookie de autenticación, autentícalo
+        const cookieAuth = req.cookies.recordarUsuario;
+
+        if (cookieAuth === 'true') {
+            req.session.user = 'admin';
+            req.session.admin = true;
+            return next();
+        }
+
+        // Si no está autenticado y no hay cookie de autenticación, redirige a la página de inicio
+        res.redirect('/');
     }
 }
 
@@ -137,7 +145,7 @@ app.get('/cerrarSesion', async function (req, res) {
         if (err) {
             console.error(err);
         }
-        res.cookie('usuario', '', { expires: new Date(0) });
+        res.cookie('recordarUsuario', '', { expires: new Date(0) });
         res.redirect('/');
     });
 });
@@ -149,7 +157,7 @@ app.get("/chat", auth, (req, res) => {
         // Guarda una cookie llamada "recordarUsuario" con el valor "true"
         res.cookie('recordarUsuario', 'true', { maxAge: 30 * 60 * 1000 }); // Cookie válida por 30 minutos
     }
-    
+
     var contenido = fs.readFileSync("./public/chat.html");
     res.setHeader("Content-type", "text/html");
     res.send(contenido);
