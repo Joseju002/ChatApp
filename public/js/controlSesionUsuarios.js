@@ -42,7 +42,7 @@ function iniciarSesion() {
             sessionStorage.setItem('nombreUsuario', data.user);
         } else if (data.res == "login remember" && data.user && data.pass) {
             document.cookie = "usuario=" + encodeURIComponent(data.user) + "; expires=" + cadenaFechaExpiracion + "; path=/";
-            window.location.replace("/chat");
+            window.location.replace("/chat?recordarUsuario=true");
             sessionStorage.setItem('nombreUsuario', data.user);
         } else if (data.res == "login invalid") { //Si no es exitoso
             var alertDiv = document.createElement('div');

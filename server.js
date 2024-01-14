@@ -5,6 +5,11 @@ var session = require('express-session'); //Para el inicio de sesión
 var server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+//Para almacenar cookies
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+
 //Puerto
 const port = 3004;
 
@@ -140,6 +145,11 @@ app.get('/cerrarSesion', async function (req, res) {
 
 //Pagina del chat
 app.get("/chat", auth, (req, res) => {
+    if (req.query.recordarUsuario === 'true') {
+        // Guarda una cookie llamada "recordarUsuario" con el valor "true"
+        res.cookie('recordarUsuario', 'true', { maxAge: 30 * 60 * 1000 }); // Cookie válida por 30 minutos
+    }
+    
     var contenido = fs.readFileSync("./public/chat.html");
     res.setHeader("Content-type", "text/html");
     res.send(contenido);
