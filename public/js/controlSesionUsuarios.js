@@ -16,6 +16,7 @@ function comprobarCookie(nombre) {
 comprobarCookie("recordarUsuario");
 
 function iniciarSesion() {
+
     var usuario = document.getElementById('user').value;
     var contrasena = document.getElementById('pass').value;
     var remember = document.getElementById('remember').checked;
@@ -61,6 +62,7 @@ function iniciarSesion() {
 }
 
 function registrarUsuario() {
+
     var usuario = document.getElementById('user').value;
     var contrasena = document.getElementById('pass').value;
 
@@ -100,21 +102,18 @@ function registrarUsuario() {
     });
 }
 
-var registrarBtn = document.getElementById('registrar');
-if (registrarBtn) {
-    registrarBtn.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-            registrarUsuario();
-        }
-    });
-}
+// Agregar evento al presionar Enter en el campo de contraseña
+document.getElementById('pass').addEventListener('keypress', function (event) {
+    if (event.key === 'Enter') {
+        var btniniciar = document.getElementById('iniciar');
+        var btnregistr = document.getElementById('registrar');
 
-// Listener para la tecla "Enter" en el botón con id 'iniciar'
-var iniciarBtn = document.getElementById('iniciar');
-if (iniciarBtn) {
-    iniciarBtn.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
+        if (btniniciar) {
             iniciarSesion();
         }
-    });
-}
+
+        if (btnregistr) {
+            registrarUsuario();
+        }
+    }
+});
