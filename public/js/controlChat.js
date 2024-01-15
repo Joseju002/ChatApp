@@ -216,4 +216,24 @@ $(document).ready(function () {
         // Si no se encuentra la cookie, devuelve null
         return null;
     }
+
+    //Con este evento JQuery, podemos elegir a quién se dirigirá el mensaje más facilmente
+    $(document).on('keydown', function (e) {
+        // Verificar si la tecla presionada es la flecha arriba o abajo
+        if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+            var $select = $('#miSelect');
+
+            // Evitar el comportamiento predeterminado del navegador
+            e.preventDefault();
+
+            // Obtener el índice de la opción actualmente seleccionada
+            var currentIndex = $select.prop('selectedIndex');
+
+            // Calcular el nuevo índice basado en la dirección de la flecha
+            var newIndex = (e.key === 'ArrowUp') ? Math.max(0, currentIndex - 1) : Math.min($select.find('option').length - 1, currentIndex + 1);
+
+            // Establecer la nueva opción seleccionada
+            $select.prop('selectedIndex', newIndex);
+        }
+    });
 });
