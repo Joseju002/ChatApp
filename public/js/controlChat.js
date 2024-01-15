@@ -81,6 +81,17 @@ $(document).ready(function () {
 
             if (data.idEmisor == socket.id) {
                 messageElement.addClass("alert alert-success");
+                // Para compatibilidad con diferentes navegadores
+                var cuerpo = $('body');
+                var html = $('html');
+
+                // Calcula la altura total de la página
+                var alturaTotal = Math.max(cuerpo[0].scrollHeight, cuerpo[0].offsetHeight, html[0].clientHeight, html[0].scrollHeight, html[0].offsetHeight);
+
+                // Hace scroll hacia abajo
+                $('html, body').animate({
+                    scrollTop: alturaTotal
+                }, 'slow');
             }
 
             var mensajeElement = $('<em></em>').text(data.msg);
@@ -101,18 +112,6 @@ $(document).ready(function () {
 
         // Agregar el nuevo elemento al contenedor de mensajes
         contenedorMensaje.append(messageElement);
-
-        // Para compatibilidad con diferentes navegadores
-        var cuerpo = $('body');
-        var html = $('html');
-
-        // Calcula la altura total de la página
-        var alturaTotal = Math.max(cuerpo[0].scrollHeight, cuerpo[0].offsetHeight, html[0].clientHeight, html[0].scrollHeight, html[0].offsetHeight);
-
-        // Hace scroll hacia abajo
-        $('html, body').animate({
-            scrollTop: alturaTotal
-        }, 'slow');
     }
 
 

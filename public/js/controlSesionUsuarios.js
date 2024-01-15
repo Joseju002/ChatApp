@@ -60,6 +60,12 @@ function iniciarSesion() {
     });
 }
 
+document.getElementById('iniciar').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        iniciarSesion();
+    }
+});
+
 function registrarUsuario() {
     var usuario = document.getElementById('user').value;
     var contrasena = document.getElementById('pass').value;
@@ -82,6 +88,7 @@ function registrarUsuario() {
     promise.always(function (data) {
         console.log("Entra");
         if (data.res == "register true") { //Si el registro es exitoso
+            window.alert("Usuario registrado con éxito.")
             window.location.replace("/iniciar");
         } else if (data.res == "register exists") { //Si el usuario ya existe
             var alertDiv = document.createElement('div');
@@ -98,3 +105,9 @@ function registrarUsuario() {
         }
     });
 }
+
+document.getElementById('registrar').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+        registrarUsuario();
+    }
+});
