@@ -221,7 +221,7 @@ $(document).ready(function () {
     $(document).on('keydown', function (e) {
         // Verificar si la tecla presionada es la flecha arriba o abajo
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-            var $select = $('#miSelect');
+            var $select = $('#elegirUser');
 
             // Evitar el comportamiento predeterminado del navegador
             e.preventDefault();
