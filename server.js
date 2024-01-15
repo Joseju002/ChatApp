@@ -45,7 +45,7 @@ var auth = function (req, res, next) {
     if (req.session && req.session.user === "admin" && req.session.admin) {
         return next(); //Continua
     } else { //Si el usuario no tiene los permisos, te llevará a la página de inicio
-        // Si no está autenticado pero hay una cookie de autenticación, autentícalo
+        // Si no está autenticado pero hay una cookie de autenticación, podrá acceder a webs con autorización
         const cookieAuth = req.cookies.recordarUsuario;
 
         if (cookieAuth === 'true') {
@@ -154,7 +154,7 @@ app.get('/cerrarSesion', async function (req, res) {
 //Pagina del chat
 app.get("/chat", auth, (req, res) => {
     if (req.query.recordarUsuario === 'true') {
-        // Guarda una cookie llamada "recordarUsuario" con el valor "true"
+        // Guarda una cookie llamada si se ha especificado que se recuerde al usuario
         res.cookie('recordarUsuario', 'true', { maxAge: 30 * 60 * 1000 }); // Cookie válida por 30 minutos
     }
 

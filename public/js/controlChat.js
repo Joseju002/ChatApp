@@ -116,50 +116,6 @@ $(document).ready(function () {
     }
 
 
-    //Esta función es la que muestra la lista de los usuarios en el HTML
-    /* function renderizarListaUsuarios(usuarios) {
-        // Obtener el elemento de la lista en el HTML
-        var listaUsuarios = document.getElementById('listaUsuarios');
-        var selectElegirUsuario = document.getElementById('elegirUser');
-        var mensajeBienvenida = document.getElementById('bienvenida');
-    
-        // Limpiar la lista antes de agregar los nuevos usuarios
-        listaUsuarios.innerHTML = '';
-        selectElegirUsuario.innerHTML = '';
-    
-        var optionUsuario = document.createElement('option');
-        optionUsuario.value = "nadie";
-        optionUsuario.textContent = "Chat público";
-        selectElegirUsuario.appendChild(optionUsuario);
-    
-        // Recorrer la lista de usuarios y agregarlos a la lista/desplegable en el HTML
-        usuarios.forEach(function (usuario) {
-            var usuarioElemento = document.createElement('li');
-    
-            if (usuario.id == socket.id) {
-                mensajeBienvenida.textContent = 'Bienvenido, ' + usuario.user;
-                var link = document.createElement("a");
-                link.className = "nav-link active";
-                link.textContent = usuario.user;
-                usuarioElemento.appendChild(link);
-            } else {
-                var link = document.createElement("a");
-                link.className = "nav-link";
-                link.textContent = usuario.user;
-                usuarioElemento.appendChild(link);
-            }
-    
-            // Agregar el usuario a la lista en el HTML
-            listaUsuarios.appendChild(usuarioElemento);
-    
-            // Agregar el usuario a la lista desplegable (select)
-            var optionUsuario = document.createElement('option');
-            optionUsuario.value = usuario.id;
-            optionUsuario.textContent = usuario.user;
-            selectElegirUsuario.appendChild(optionUsuario);
-        });
-    } */
-
     function renderizarListaUsuarios(usuarios) {
         // Obtener los elementos de la lista en el HTML usando jQuery
         var listaUsuarios = $('#listaUsuarios');
@@ -196,8 +152,7 @@ $(document).ready(function () {
         });
     }
 
-
-
+    //Para comprobar que se envía un mensaje contiene un insulto
     function contienePalabra(cadena, insultos) {
         return insultos.some(palabra => cadena.toLowerCase().includes(palabra));
     }
@@ -246,6 +201,7 @@ $(document).ready(function () {
         synth.speak(ssUtterance);
     }
 
+    //Para devolver una cookie
     function obtenerCookie(nombreCookie) {
         var nombre = nombreCookie + "=";
         var cookies = document.cookie.split(';');
