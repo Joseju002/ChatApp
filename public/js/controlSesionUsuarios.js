@@ -60,12 +60,6 @@ function iniciarSesion() {
     });
 }
 
-document.getElementById('iniciar').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        iniciarSesion();
-    }
-});
-
 function registrarUsuario() {
     var usuario = document.getElementById('user').value;
     var contrasena = document.getElementById('pass').value;
@@ -106,8 +100,21 @@ function registrarUsuario() {
     });
 }
 
-document.getElementById('registrar').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-        registrarUsuario();
-    }
-});
+var registrarBtn = document.getElementById('registrar');
+if (registrarBtn) {
+    registrarBtn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            registrarUsuario();
+        }
+    });
+}
+
+// Listener para la tecla "Enter" en el botón con id 'iniciar'
+var iniciarBtn = document.getElementById('iniciar');
+if (iniciarBtn) {
+    iniciarBtn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            iniciarSesion();
+        }
+    });
+}
