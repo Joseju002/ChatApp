@@ -16,4 +16,8 @@ body {
 .alert {
     padding: 10px;
 }
+
+#registrar, #iniciar {
+    width: 100%;
+}
   
