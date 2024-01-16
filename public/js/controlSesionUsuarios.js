@@ -102,8 +102,8 @@ function registrarUsuario() {
     });
 }
 
-// Agregar evento al presionar Enter en el campo de contraseña
-document.getElementById('pass').addEventListener('keypress', function (event) {
+// Evento al presionar Enter
+document.addEventListener('keypress', function (event) {
     if (event.key === 'Enter') {
         var btniniciar = document.getElementById('iniciar');
         var btnregistr = document.getElementById('registrar');
