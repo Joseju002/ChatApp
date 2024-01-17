@@ -174,9 +174,19 @@ io.on('connection', function (socket) {
     //io.emit("hay-nuevo", "nueva persona en el chat");
 
     // Almacenar usuario conectado
-    socket.on('user-connected', function (username) {
-        connectedUsers[socket.id] = { id: socket.id, user: username };
-        io.emit('users-list', Object.values(connectedUsers));
+    socket.on('user-connected', async function (username) {
+        try {
+            //Con 'await' le indicamos que el programa no continúe hasta que se ejecute la línea de comando
+            usuarioEncontrado = await usuario.findOne({ nombre: username});
+        } catch (err) {
+            console.error('Error al buscar usuario: ', err);
+        }
+        if (usuarioEncontrado) {
+            connectedUsers[socket.id] = { id: socket.id, user: username };
+            io.emit('users-list', Object.values(connectedUsers));
+        } else {
+            console.error('Error al buscar usuario: ', err);
+        }
     });
 
     // Enviar lista de usuarios conectados a todos los clientes
